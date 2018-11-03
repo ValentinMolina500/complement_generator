@@ -1,38 +1,36 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#define NUM_COMPLIMENTS 3
+#include <stdlib.h>
+#define NUM_COMPLIMENTS 100
 
 void compliments_generator ( int i )
 {
+    FILE *file;
     struct compliments
     {
-        char compliment[30];
+        char compliment[120];
     };
 
-    struct compliments franklin[NUM_COMPLIMENTS] = {
-        {
-            .compliment = "You are beautiful!",
-        },
-        {
-            .compliment = "You have a great personality.",
-        },
-        {
-            .compliment = "You are smart!",
-        },
-    };
+    file = fopen("compliments.txt", "r");
 
-    printf ("%s\n", franklin[i].compliment);
-    printf ("\n");
+    struct compliments franklin[NUM_COMPLIMENTS];
+
+    for ( int n = 0;  n < NUM_COMPLIMENTS;  n++ )
+        fgets(franklin[n].compliment, 120, (FILE*) file);
+
+    printf ("%s", franklin[i].compliment);
+
+    fclose (file);
 }
 
 int main ()
 {
     int index;
-    printf ("I have the perfect compliment for you!");
+    printf ("I have the perfect compliment for you! ");
 
     srand(time(0));
-    index = (rand() % 2) + 1;
+    index = (rand() % 100) + 1;
 
     compliments_generator(index);
 
