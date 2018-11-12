@@ -40,7 +40,8 @@ void compliments_generator (int i)
         switch (choice)
         {
             case 'y':
-                i = random();
+                //i = random();
+                i++;
                 printf ("\n%s", franklin[i].compliment);
                 break;
 
@@ -61,7 +62,8 @@ int main ()
     int index;
     printf ("I have the perfect compliment for you! ");
 
-    index = random();
+    //index = random();
+    index = 0;
     compliments_generator(index);
 
     printf ("\nSee you! Have a wonderful day!\n");
